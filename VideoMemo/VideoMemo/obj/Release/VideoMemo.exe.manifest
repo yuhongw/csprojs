@@ -49,7 +49,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>9FaQ/yqRB4bMKKH7DwEftN+uYoHsiMls+9UKFv1iX0M=</dsig:DigestValue>
+        <dsig:DigestValue>ILoeI5V+UQApqOB1ouC7mtK5b+DlKS+tPy0LTkm6trg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -85,7 +85,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>C+ir6TJOApQj/WuERc6zKSxmfQcuWzGAeChqiGKErTc=</dsig:DigestValue>
+        <dsig:DigestValue>G/nmIIUpJv9Gmqe1x3vgvgvEBNHsnrfpty76nln4Yts=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -97,17 +97,17 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>sl29cvbk5alQIjRDB9AUeLB5eun/2YbfgSIXA0LtbP8=</dsig:DigestValue>
+        <dsig:DigestValue>B9lriYzpsKDhR/ne87s/VhYYWned/ahgZg93Or+naIc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="VideoMemo.exe.config" size="1285">
+  <file name="VideoMemo.exe.config" size="1280">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>O6fLsQpdOshQepResHerlrLsiCmaAPhfmBs0vUhKfI0=</dsig:DigestValue>
+      <dsig:DigestValue>9C1zPsTTk+3aZKymafTC3uP8bIUg5a9QcP7jmex+19I=</dsig:DigestValue>
     </hash>
   </file>
   <file name="videos.mdf" size="8388608" writeableType="applicationData">
