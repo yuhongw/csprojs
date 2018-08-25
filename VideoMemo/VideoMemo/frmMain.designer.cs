@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mp = new AxWMPLib.AxWindowsMediaPlayer();
             this.openFileDlg = new System.Windows.Forms.OpenFileDialog();
             this.button1 = new System.Windows.Forms.Button();
@@ -42,11 +42,14 @@
             this.OpenItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnStep = new System.Windows.Forms.Button();
+            this.btnStepPrev = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colKeyword = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPath = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCheckPoint = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(this.mp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv)).BeginInit();
             this.MainMenu.SuspendLayout();
@@ -63,7 +66,7 @@
             this.mp.Location = new System.Drawing.Point(0, 0);
             this.mp.Name = "mp";
             this.mp.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("mp.OcxState")));
-            this.mp.Size = new System.Drawing.Size(539, 507);
+            this.mp.Size = new System.Drawing.Size(541, 507);
             this.mp.TabIndex = 0;
             // 
             // openFileDlg
@@ -77,6 +80,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
+            this.button1.TabStop = false;
             this.button1.Text = "做笔记(F5)";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -161,6 +165,53 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "搜索(F1)";
             // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 25);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.mp);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.gv);
+            this.splitContainer1.Panel2.Controls.Add(this.label1);
+            this.splitContainer1.Panel2.Controls.Add(this.txtSearch);
+            this.splitContainer1.Size = new System.Drawing.Size(993, 507);
+            this.splitContainer1.SplitterDistance = 541;
+            this.splitContainer1.SplitterWidth = 2;
+            this.splitContainer1.TabIndex = 7;
+            // 
+            // btnStep
+            // 
+            this.btnStep.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnStep.Location = new System.Drawing.Point(412, 2);
+            this.btnStep.Name = "btnStep";
+            this.btnStep.Size = new System.Drawing.Size(27, 23);
+            this.btnStep.TabIndex = 1;
+            this.btnStep.TabStop = false;
+            this.btnStep.Text = ">";
+            this.toolTip1.SetToolTip(this.btnStep, "下一帧(F12)");
+            this.btnStep.UseVisualStyleBackColor = true;
+            this.btnStep.Click += new System.EventHandler(this.btnStep_Click);
+            // 
+            // btnStepPrev
+            // 
+            this.btnStepPrev.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnStepPrev.Location = new System.Drawing.Point(382, 2);
+            this.btnStepPrev.Name = "btnStepPrev";
+            this.btnStepPrev.Size = new System.Drawing.Size(28, 23);
+            this.btnStepPrev.TabIndex = 1;
+            this.btnStepPrev.TabStop = false;
+            this.btnStepPrev.Text = "<";
+            this.toolTip1.SetToolTip(this.btnStepPrev, "前一帧(F11)");
+            this.btnStepPrev.UseVisualStyleBackColor = true;
+            this.btnStepPrev.Click += new System.EventHandler(this.btnStepPrev_Click);
+            // 
             // colId
             // 
             this.colId.DataPropertyName = "Id";
@@ -186,35 +237,14 @@
             // 
             // colCheckPoint
             // 
-            this.colCheckPoint.DataPropertyName = "Position";
-            dataGridViewCellStyle6.Format = "N2";
-            dataGridViewCellStyle6.NullValue = null;
-            this.colCheckPoint.DefaultCellStyle = dataGridViewCellStyle6;
+            this.colCheckPoint.DataPropertyName = "PositionStr";
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.colCheckPoint.DefaultCellStyle = dataGridViewCellStyle1;
             this.colCheckPoint.HeaderText = "位置";
             this.colCheckPoint.Name = "colCheckPoint";
             this.colCheckPoint.ReadOnly = true;
             this.colCheckPoint.Width = 60;
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 25);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.mp);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.gv);
-            this.splitContainer1.Panel2.Controls.Add(this.label1);
-            this.splitContainer1.Panel2.Controls.Add(this.txtSearch);
-            this.splitContainer1.Size = new System.Drawing.Size(993, 507);
-            this.splitContainer1.SplitterDistance = 539;
-            this.splitContainer1.SplitterWidth = 2;
-            this.splitContainer1.TabIndex = 7;
             // 
             // frmMain
             // 
@@ -223,6 +253,8 @@
             this.ClientSize = new System.Drawing.Size(993, 532);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.labError);
+            this.Controls.Add(this.btnStepPrev);
+            this.Controls.Add(this.btnStep);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.MainMenu);
             this.KeyPreview = true;
@@ -259,11 +291,14 @@
         private System.Windows.Forms.ToolStripMenuItem OpenItem;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Button btnStep;
+        private System.Windows.Forms.Button btnStepPrev;
+        private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colId;
         private System.Windows.Forms.DataGridViewTextBoxColumn colKeyword;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPath;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCheckPoint;
-        private System.Windows.Forms.SplitContainer splitContainer1;
     }
 }
 

@@ -33,5 +33,14 @@ namespace VideoMemo.Properties {
                 return ((string)(this["cnn"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SnapshotPath {
+            get {
+                return ((string)(this["SnapshotPath"]));
+            }
+        }
     }
 }

@@ -15,6 +15,8 @@ namespace VideoMemo
         private static frmAddNote _frm;
         private string Path;
         private double Position;
+        private string PositionStr="";
+
 
         public frmAddNote()
         {
@@ -25,7 +27,7 @@ namespace VideoMemo
         {
             using (var ctx = YUDBContext.GetInstance())
             {
-                ctx.Videos.Add(new Video { Path = this.Path, Position = this.Position, Key = txtKey.Text });
+                ctx.Videos.Add(new Video { Path = this.Path, Position = this.Position,PositionStr = this.PositionStr, Key = txtKey.Text });
                 ctx.SaveChanges();
                 this.Close();
             }
@@ -36,19 +38,20 @@ namespace VideoMemo
             this.Close();
         }
 
-        public static frmAddNote GetForm(string path,double checkPoint)
+        public static frmAddNote GetForm(string path,double position,string positionStr)
         {
             if (_frm==null)
                 _frm =  new frmAddNote();
             _frm.Path = path;
-            _frm.Position = checkPoint;
+            _frm.Position = position;
+            _frm.PositionStr = positionStr;
             return _frm;
         }
 
         private void frmAddNote_Load(object sender, EventArgs e)
         {
             labPath.Text = this.Path;
-            labPosition.Text = this.Position.ToString("F");
+            labPosition.Text = this.PositionStr;
         }
 
         private void frmAddNote_Activated(object sender, EventArgs e)
