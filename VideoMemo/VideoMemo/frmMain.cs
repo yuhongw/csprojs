@@ -28,6 +28,9 @@ namespace VideoMemo
 
         private void frmMain_KeyDown(object sender, KeyEventArgs e)
         {
+
+            HideSnapshot();
+
             if (e.KeyCode == Keys.F3)
             {
                 OpenFile();
@@ -68,6 +71,7 @@ namespace VideoMemo
                 btnStepPrev_Click(this, null);
             }
 
+            
 
 
         }
@@ -94,8 +98,10 @@ namespace VideoMemo
             {
                 this.mp.Ctlcontrols.pause();
 
-                TakePhoto();
-                frmAddNote.GetForm(this.mp.URL, mp.Ctlcontrols.currentPosition, mp.Ctlcontrols.currentPositionString).ShowDialog();
+                string fn = TakePhoto();
+                frmAddNote frm = frmAddNote.GetForm(this.mp.URL, mp.Ctlcontrols.currentPosition, mp.Ctlcontrols.currentPositionString);
+                frm.SnapShot = fn;
+                frm.ShowDialog();
                 this.mp.Ctlcontrols.play();
                 RefreshDataDefault();
             }
@@ -180,8 +186,9 @@ namespace VideoMemo
             }
         }
 
-        private void TakePhoto()
+        private string TakePhoto()
         {
+            string fn = "";
             if (this.mp.playState == WMPPlayState.wmppsPlaying)
                 this.mp.Ctlcontrols.pause();
 
@@ -212,7 +219,7 @@ namespace VideoMemo
                             }
                         }
                         // afterwards save bitmap file if user wants to
-                        string fn = GetSnapShotFn();
+                        fn = GetSnapShotFn();
                         using (MemoryStream ms = new MemoryStream())
                         {
                             bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
@@ -224,9 +231,11 @@ namespace VideoMemo
                 }
                 catch (Exception ex)
                 {
-                    SetErrorInfo(ex.Message);
+                    MessageBox.Show(ex.Message);
                 }
+                
             }
+            return fn;
         }
 
         private string GetSnapShotFn()
@@ -237,8 +246,42 @@ namespace VideoMemo
                 path = Application.StartupPath;
             }
 
+            if (path[1]!=':')   //绝对路径
+            {
+                path = Path.Combine(Application.StartupPath,path);
+            }
+            if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+
             path = Path.Combine(path, Path.GetFileName(this.mp.URL) + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".png");
             return path;
+        }
+
+        private void gv_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            HideSnapshot();
+            Video video = gv.Rows[e.RowIndex]?.DataBoundItem as Video;
+            if (video != null)
+            {
+                if (!string.IsNullOrEmpty(video.SnapShot))
+                {
+                    if (File.Exists(video.SnapShot)) ShowSnapShot(video.SnapShot);
+                }
+            }
+        }
+
+        private void ShowSnapShot(string snapShot)
+        {
+            pic.Location = mp.Location;
+            pic.Visible = true;
+            pic.ImageLocation = snapShot;
+            labTitle.Text =snapShot;
+            labTitle.Show();
+        }
+
+        private void HideSnapshot()
+        {
+            pic.Hide();
+            labTitle.Hide();
         }
     }
 }

@@ -16,5 +16,6 @@ namespace VideoMemo
         public string Key { get; set; }
         public double Position { get; set; }
         public string PositionStr { get; set; }
+        public string SnapShot { get; set; }
     }
 }

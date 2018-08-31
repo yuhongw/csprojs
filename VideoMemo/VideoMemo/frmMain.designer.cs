@@ -30,13 +30,17 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mp = new AxWMPLib.AxWindowsMediaPlayer();
             this.openFileDlg = new System.Windows.Forms.OpenFileDialog();
             this.button1 = new System.Windows.Forms.Button();
             this.labError = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.gv = new System.Windows.Forms.DataGridView();
+            this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colKeyword = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPath = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCheckPoint = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MainMenu = new System.Windows.Forms.MenuStrip();
             this.ExitItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,10 +50,8 @@
             this.btnStep = new System.Windows.Forms.Button();
             this.btnStepPrev = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colKeyword = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPath = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCheckPoint = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pic = new System.Windows.Forms.PictureBox();
+            this.labTitle = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.mp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv)).BeginInit();
             this.MainMenu.SuspendLayout();
@@ -57,6 +59,7 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic)).BeginInit();
             this.SuspendLayout();
             // 
             // mp
@@ -66,7 +69,7 @@
             this.mp.Location = new System.Drawing.Point(0, 0);
             this.mp.Name = "mp";
             this.mp.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("mp.OcxState")));
-            this.mp.Size = new System.Drawing.Size(541, 507);
+            this.mp.Size = new System.Drawing.Size(543, 507);
             this.mp.TabIndex = 0;
             // 
             // openFileDlg
@@ -121,6 +124,41 @@
             this.gv.RowTemplate.Height = 23;
             this.gv.Size = new System.Drawing.Size(441, 472);
             this.gv.TabIndex = 3;
+            this.gv.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.gv_RowEnter);
+            // 
+            // colId
+            // 
+            this.colId.DataPropertyName = "Id";
+            this.colId.HeaderText = "#";
+            this.colId.Name = "colId";
+            this.colId.ReadOnly = true;
+            this.colId.Width = 50;
+            // 
+            // colKeyword
+            // 
+            this.colKeyword.DataPropertyName = "Key";
+            this.colKeyword.HeaderText = "关键词";
+            this.colKeyword.Name = "colKeyword";
+            this.colKeyword.ReadOnly = true;
+            // 
+            // colPath
+            // 
+            this.colPath.DataPropertyName = "Path";
+            this.colPath.HeaderText = "文件";
+            this.colPath.Name = "colPath";
+            this.colPath.ReadOnly = true;
+            this.colPath.Width = 200;
+            // 
+            // colCheckPoint
+            // 
+            this.colCheckPoint.DataPropertyName = "PositionStr";
+            dataGridViewCellStyle7.Format = "N2";
+            dataGridViewCellStyle7.NullValue = null;
+            this.colCheckPoint.DefaultCellStyle = dataGridViewCellStyle7;
+            this.colCheckPoint.HeaderText = "位置";
+            this.colCheckPoint.Name = "colCheckPoint";
+            this.colCheckPoint.ReadOnly = true;
+            this.colCheckPoint.Width = 60;
             // 
             // MainMenu
             // 
@@ -174,6 +212,8 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.labTitle);
+            this.splitContainer1.Panel1.Controls.Add(this.pic);
             this.splitContainer1.Panel1.Controls.Add(this.mp);
             // 
             // splitContainer1.Panel2
@@ -182,7 +222,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.label1);
             this.splitContainer1.Panel2.Controls.Add(this.txtSearch);
             this.splitContainer1.Size = new System.Drawing.Size(993, 507);
-            this.splitContainer1.SplitterDistance = 541;
+            this.splitContainer1.SplitterDistance = 543;
             this.splitContainer1.SplitterWidth = 2;
             this.splitContainer1.TabIndex = 7;
             // 
@@ -212,39 +252,24 @@
             this.btnStepPrev.UseVisualStyleBackColor = true;
             this.btnStepPrev.Click += new System.EventHandler(this.btnStepPrev_Click);
             // 
-            // colId
+            // pic
             // 
-            this.colId.DataPropertyName = "Id";
-            this.colId.HeaderText = "#";
-            this.colId.Name = "colId";
-            this.colId.ReadOnly = true;
-            this.colId.Width = 50;
+            this.pic.Location = new System.Drawing.Point(0, 0);
+            this.pic.Name = "pic";
+            this.pic.Size = new System.Drawing.Size(543, 507);
+            this.pic.TabIndex = 1;
+            this.pic.TabStop = false;
             // 
-            // colKeyword
+            // labTitle
             // 
-            this.colKeyword.DataPropertyName = "Key";
-            this.colKeyword.HeaderText = "关键词";
-            this.colKeyword.Name = "colKeyword";
-            this.colKeyword.ReadOnly = true;
-            // 
-            // colPath
-            // 
-            this.colPath.DataPropertyName = "Path";
-            this.colPath.HeaderText = "文件";
-            this.colPath.Name = "colPath";
-            this.colPath.ReadOnly = true;
-            this.colPath.Width = 200;
-            // 
-            // colCheckPoint
-            // 
-            this.colCheckPoint.DataPropertyName = "PositionStr";
-            dataGridViewCellStyle1.Format = "N2";
-            dataGridViewCellStyle1.NullValue = null;
-            this.colCheckPoint.DefaultCellStyle = dataGridViewCellStyle1;
-            this.colCheckPoint.HeaderText = "位置";
-            this.colCheckPoint.Name = "colCheckPoint";
-            this.colCheckPoint.ReadOnly = true;
-            this.colCheckPoint.Width = 60;
+            this.labTitle.BackColor = System.Drawing.Color.Black;
+            this.labTitle.Font = new System.Drawing.Font("Arial", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labTitle.ForeColor = System.Drawing.Color.Yellow;
+            this.labTitle.Location = new System.Drawing.Point(1, 5);
+            this.labTitle.Name = "labTitle";
+            this.labTitle.Size = new System.Drawing.Size(542, 23);
+            this.labTitle.TabIndex = 2;
+            this.labTitle.Text = ".";
             // 
             // frmMain
             // 
@@ -273,6 +298,7 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pic)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -299,6 +325,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colKeyword;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPath;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCheckPoint;
+        private System.Windows.Forms.PictureBox pic;
+        private System.Windows.Forms.Label labTitle;
     }
 }
 

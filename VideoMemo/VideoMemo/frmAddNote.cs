@@ -16,7 +16,7 @@ namespace VideoMemo
         private string Path;
         private double Position;
         private string PositionStr="";
-
+        public string SnapShot { get; set; }
 
         public frmAddNote()
         {
@@ -27,7 +27,7 @@ namespace VideoMemo
         {
             using (var ctx = YUDBContext.GetInstance())
             {
-                ctx.Videos.Add(new Video { Path = this.Path, Position = this.Position,PositionStr = this.PositionStr, Key = txtKey.Text });
+                ctx.Videos.Add(new Video { Path = this.Path, Position = this.Position,PositionStr = this.PositionStr, Key = txtKey.Text,SnapShot = this.SnapShot });
                 ctx.SaveChanges();
                 this.Close();
             }
